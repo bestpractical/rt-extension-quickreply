@@ -1,0 +1,10 @@
+<%INIT>
+if ( ref $Format ) {
+    $$Format .= q{,'__QuickReply__'} unless $$Format =~ /__QuickReply__/;
+}
+</%INIT>
+
+<%ARGS>
+$ARGSRef
+$Format => undef
+</%ARGS>

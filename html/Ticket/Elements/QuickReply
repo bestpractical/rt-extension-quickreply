@@ -47,9 +47,15 @@
 <&|/Widgets/TitleBox,
     title => loc("Quick Reply"),
 &>
-    <form action="<%$RT::WebPath%>/Ticket/Display.html" method="post" id="quick-reply">
+    <form action="<%$RT::WebPath%>/Ticket/Display.html" method="post" id="quick-reply" <% $PostToNewTab ? ' target="_blank"' : '' |n %>>
         <input type="hidden" class="hidden" name="id" value="<% $Ticket->id %>" />
         <table border="0" width="100%">
+% if ( $ShowId ) {
+            <tr>
+                <td class="label">Id:</td>
+                <td><% $Ticket->id %></td>
+            </tr>
+% }
 % if ( $ShowStatus ) {
             <tr>
                 <td class="label">Status:</td>
@@ -126,5 +132,7 @@ return unless $CanRespond || $CanComment;
 </%INIT>
 <%ARGS>
 $ShowStatus => 1
+$ShowId => 0
+$PostToNewTab => 0
 $Ticket
 </%ARGS>

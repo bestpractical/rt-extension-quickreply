@@ -7,6 +7,9 @@ INSTALLATION
     "make install"
         May need root permissions
 
+    apply etc/search_results.diff
+            patch /path/to/rt/share/html/Search/Results.html < etc/search_results.diff
+
     Edit your /opt/rt4/etc/RT_SiteConfig.pm
         Add this line:
 

@@ -1,0 +1,13 @@
+diff --git a/share/html/Search/Results.html b/share/html/Search/Results.html
+index d2856e9..4f6cdac 100644
+--- a/share/html/Search/Results.html
++++ b/share/html/Search/Results.html
+@@ -50,7 +50,7 @@
+     LinkRel => \%link_rel &>
+ <& /Elements/Tabs &>
+ 
+-% $m->callback( ARGSRef => \%ARGS, CallbackName => 'BeforeResults' );
++% $m->callback( ARGSRef => \%ARGS, Format => \$Format, CallbackName => 'BeforeResults' );
+ 
+ % unless ($ok) {
+ %    $msg =~ s{ at .*? line .*}{}s;

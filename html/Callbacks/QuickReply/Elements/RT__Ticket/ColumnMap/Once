@@ -1,0 +1,13 @@
+<%INIT>
+$COLUMN_MAP->{QuickReply} = {
+    title => ' ',
+    value => sub {
+        my $link = q{<a class="quick-reply" href="#" ticket-id="} . $_[0]->id . q{">} . loc('Quick Reply') . '</a>';
+        return \$link;
+    },
+};
+
+</%INIT>
+<%ARGS>
+$COLUMN_MAP
+</%ARGS>

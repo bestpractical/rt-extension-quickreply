@@ -1,0 +1,17 @@
+<div id="quick-reply-container" name="quick-reply-container"></div>
+
+<script type="text/javascript">
+jQuery(function() {
+    jQuery('a.quick-reply').click( function() {
+        var ticket_id = jQuery(this).attr('ticket-id');
+        jQuery('#quick-reply-container').load('/Ticket/QuickReply.html?id=' + ticket_id,
+            function() {
+% if ( RT->Config->Get('MessageBoxRichText',  $session{'CurrentUser'})) {
+                ReplaceAllTextareas(0);
+% }
+            window.scrollTo(0, jQuery( "#quick-reply-container" ).position().top);
+        } );
+        return false;
+    });
+});
+</script>
