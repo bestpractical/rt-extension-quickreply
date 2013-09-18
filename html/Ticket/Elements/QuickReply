@@ -1,0 +1,130 @@
+%# BEGIN BPS TAGGED BLOCK {{{
+%# 
+%# COPYRIGHT:
+%#  
+%# This software is Copyright (c) 1996-2013 Best Practical Solutions, LLC 
+%#                                          <jesse@bestpractical.com>
+%# 
+%# (Except where explicitly superseded by other copyright notices)
+%# 
+%# 
+%# LICENSE:
+%# 
+%# This work is made available to you under the terms of Version 2 of
+%# the GNU General Public License. A copy of that license should have
+%# been provided with this software, but in any event can be snarfed
+%# from www.gnu.org.
+%# 
+%# This work is distributed in the hope that it will be useful, but
+%# WITHOUT ANY WARRANTY; without even the implied warranty of
+%# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+%# General Public License for more details.
+%# 
+%# You should have received a copy of the GNU General Public License
+%# along with this program; if not, write to the Free Software
+%# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+%# 
+%# 
+%# CONTRIBUTION SUBMISSION POLICY:
+%# 
+%# (The following paragraph is not intended to limit the rights granted
+%# to you to modify and distribute this software under the terms of
+%# the GNU General Public License and is only of importance to you if
+%# you choose to contribute your changes and enhancements to the
+%# community by submitting them to Best Practical Solutions, LLC.)
+%# 
+%# By intentionally submitting any modifications, corrections or
+%# derivatives to this work, or any other work intended for use with
+%# Request Tracker, to Best Practical Solutions, LLC, you confirm that
+%# you are the copyright holder for those contributions and you grant
+%# Best Practical Solutions,  LLC a nonexclusive, worldwide, irrevocable,
+%# royalty-free, perpetual, license to use, copy, create derivative
+%# works based on those contributions, and sublicense and distribute
+%# those contributions and any derivatives thereof.
+%# 
+%# END BPS TAGGED BLOCK }}}
+
+<&|/Widgets/TitleBox,
+    title => loc("Quick Reply"),
+&>
+    <form action="<%$RT::WebPath%>/Ticket/Display.html" method="post" id="quick-reply">
+        <input type="hidden" class="hidden" name="id" value="<% $Ticket->id %>" />
+        <table border="0" width="100%">
+% if ( $ShowStatus ) {
+            <tr>
+                <td class="label">Status:</td>
+                <td> <& /Elements/SelectStatus, Name => 'Status', DefaultLabel => loc("[_1] (Unchanged)", loc($Ticket->Status)) &></td>
+            </tr>
+% }
+            <tr>
+                <td class="label"><&|/l&>Update Type</&>:</td>
+                <td>
+                    <select name="UpdateType" id="UpdateType">
+% if ($CanComment) {
+                        <option value="private" <% $ARGS{'UpdateType'} eq "private" ? qq[ selected="selected"] : '' |n %>><&|/l&>Comments (Not sent to requestors)</&></option>
+% }
+% if ($CanRespond) {
+                        <option value="response" <% $ARGS{'UpdateType'} ? qq[ selected="selected"] : '' |n %>><&|/l&>Reply to requestors</&></option>
+% }
+                    </select>
+                </td>
+            </tr>
+<script type="text/javascript">
+    jQuery(function() {
+        jQuery("#UpdateType").change(function(ev) {
+            jQuery(".messagebox-container")
+                .removeClass("action-response action-private")
+                .addClass("action-"+ev.target.value);
+        });
+    });
+    jQuery(function() {
+        jQuery("input[name=TxnSendMailTo]").change(function(ev) {
+            jQuery("input[name=TxnSendMailTo][value="+ev.target.value+"]")
+                  .attr("checked",jQuery(ev.target).attr('checked'));
+        });
+    });
+</script>
+
+            <tr>
+                <td class="label" valign="top"><&|/l&>Message</&>:</td>
+                <td class="messagebox-container action-<% $type %>">
+                <& /Elements/MessageBox, Name=>"UpdateContent", IncludeSignature => 0, %ARGS &>
+                </td>
+            </tr>
+        </table>
+        <& /Elements/Submit, Label => loc('Update Ticket'), Name => 'SubmitTicket', id => 'SubmitTicket' &>
+    </form>
+</&>
+
+<style>
+#quick-reply {
+    display: block;
+    margin-right: 20%;
+}
+
+#quick-reply td.label {
+    width: 10%;
+}
+</style>
+<%INIT>
+my $CanRespond = 0;
+my $CanComment = 0;
+
+$CanRespond = 1 if ( $Ticket->CurrentUserHasRight('ReplyToTicket') or
+                     $Ticket->CurrentUserHasRight('ModifyTicket') ); 
+
+$CanComment = 1 if ( $Ticket->CurrentUserHasRight('CommentOnTicket') or
+                     $Ticket->CurrentUserHasRight('ModifyTicket') ); 
+
+$ShowStatus = 0 unless $Ticket->CurrentUserHasRight('ModifyTicket');
+
+$ARGS{'UpdateType'} ||= 'response' if $CanRespond;
+$ARGS{'UpdateType'} ||= 'private' if $CanComment;
+my $type = $ARGS{'UpdateType'};
+
+return unless $CanRespond || $CanComment;
+</%INIT>
+<%ARGS>
+$ShowStatus => 1
+$Ticket
+</%ARGS>
