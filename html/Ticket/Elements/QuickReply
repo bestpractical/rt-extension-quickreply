@@ -94,7 +94,7 @@
             <tr>
                 <td class="label" valign="top"><&|/l&>Message</&>:</td>
                 <td class="messagebox-container action-<% $type %>">
-                <& /Elements/MessageBox, Name=>"UpdateContent", IncludeSignature => 0, %ARGS &>
+                <& /Elements/MessageBox, Name=>"UpdateContent", %ARGS &>
                 </td>
             </tr>
         </table>
