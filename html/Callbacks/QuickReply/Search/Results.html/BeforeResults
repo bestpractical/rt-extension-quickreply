@@ -1,4 +1,5 @@
 <%INIT>
+return unless RT->Config->Get('QuickReplyInSearchResults');
 if ( ref $Format && $$Format !~ /__QuickReply__/ ) {
     $$DisplayFormat = $$Format;
     $$DisplayFormat .= q{,'__QuickReply__'};

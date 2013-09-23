@@ -32,6 +32,11 @@ Add this line:
 
 or add C<RT::Extension::QuickReply> to your existing C<@Plugins> line.
 
+By default, Quick reply is not enabled in search results page, you can turn it
+on by:
+
+    Set($QuickReplyInSearchResults, 1);
+
 =item Clear your mason cache
 
     rm -rf /opt/rt4/var/mason_data/obj

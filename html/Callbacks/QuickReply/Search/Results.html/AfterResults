@@ -15,3 +15,7 @@ jQuery(function() {
     });
 });
 </script>
+
+<%INIT>
+return unless RT->Config->Get('QuickReplyInSearchResults');
+</%INIT>
