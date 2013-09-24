@@ -1,1 +1,9 @@
 <& /Ticket/Elements/QuickReply, %ARGS, ShowId => 0, &>
+
+% if ( RT->Config->Get('MessageBoxRichText',  $session{'CurrentUser'})) {
+<script type="text/javascript">
+jQuery( function() {
+    ReplaceAllTextareas(0);
+});
+</script>
+% }
