@@ -1,0 +1,5 @@
+<& /Ticket/Elements/QuickReply, %ARGS &>
+
+<%INIT>
+return unless RT->Config->Get('QuickReplyPositionInDisplay') && RT->Config->Get('QuickReplyPositionInDisplay') eq 'BeforeShowHistory';
+</%INIT>

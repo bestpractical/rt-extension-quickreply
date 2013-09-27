@@ -1,1 +1,5 @@
 <& /Ticket/Elements/QuickReply, %ARGS &>
+
+<%INIT>
+return if RT->Config->Get('QuickReplyPositionInDisplay') && RT->Config->Get('QuickReplyPositionInDisplay') ne 'AfterShowHistory';
+</%INIT>

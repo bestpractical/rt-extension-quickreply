@@ -37,6 +37,15 @@ on by:
 
     Set($QuickReplyInSearchResults, 1);
 
+By default, Quick reply shows up in Ticket Display page after History section,
+you can customize the position by:
+
+    Set($QuickReplyPositionInDisplay, 'BeforeShowHistory');
+
+or
+
+    Set($QuickReplyPositionInDisplay, 'BeforeShowSummary');
+
 =item Clear your mason cache
 
     rm -rf /opt/rt4/var/mason_data/obj
