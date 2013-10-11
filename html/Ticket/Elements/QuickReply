@@ -59,7 +59,7 @@
 % if ( $ShowStatus ) {
             <tr>
                 <td class="label">Status:</td>
-                <td> <& /Elements/SelectStatus, Name => 'Status', DefaultLabel => loc("[_1] (Unchanged)", loc($Ticket->Status)) &></td>
+                <td> <& /Elements/SelectStatus, Name => 'Status', Object => $Ticket, DefaultLabel => loc("[_1] (Unchanged)", loc($Ticket->Status)) &></td>
             </tr>
 % }
             <tr>
