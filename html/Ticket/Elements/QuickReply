@@ -70,7 +70,7 @@
                         <option value="private" <% $ARGS{'UpdateType'} eq "private" ? qq[ selected="selected"] : '' |n %>><&|/l&>Comments (Not sent to requestors)</&></option>
 % }
 % if ($CanRespond) {
-                        <option value="response" <% $ARGS{'UpdateType'} ? qq[ selected="selected"] : '' |n %>><&|/l&>Reply to requestors</&></option>
+                        <option value="response" <% $ARGS{'UpdateType'} ne 'private' ? qq[ selected="selected"] : '' |n %>><&|/l&>Reply to requestors</&></option>
 % }
                     </select>
                 </td>
@@ -124,8 +124,8 @@ $CanComment = 1 if ( $Ticket->CurrentUserHasRight('CommentOnTicket') or
 
 $ShowStatus = 0 unless $Ticket->CurrentUserHasRight('ModifyTicket');
 
-$ARGS{'UpdateType'} ||= 'response' if $CanRespond;
 $ARGS{'UpdateType'} ||= 'private' if $CanComment;
+$ARGS{'UpdateType'} ||= 'response' if $CanRespond;
 my $type = $ARGS{'UpdateType'};
 
 return unless $CanRespond || $CanComment;
