@@ -17,6 +17,20 @@ INSTALLATION
 
         or add "RT::Extension::QuickReply" to your existing @Plugins line.
 
+        By default, Quick reply is not enabled in search results page, you
+        can turn it on by:
+
+            Set($QuickReplyInSearchResults, 1);
+
+        By default, Quick reply shows up in Ticket Display page after
+        History section, you can customize the position by:
+
+            Set($QuickReplyPositionInDisplay, 'BeforeShowHistory');
+
+        or
+
+            Set($QuickReplyPositionInDisplay, 'BeforeShowSummary');
+
     Clear your mason cache
             rm -rf /opt/rt4/var/mason_data/obj
 
@@ -34,7 +48,7 @@ BUGS
     y>.
 
 LICENSE AND COPYRIGHT
-    Shipwright is Copyright 2013 Best Practical Solutions, LLC.
+    This software is Copyright 2013 Best Practical Solutions, LLC.
 
     This is free software, licensed under:
 
