@@ -1,0 +1,26 @@
+etc/search_results.diff
+html/Callbacks/QuickReply/Elements/RT__Ticket/ColumnMap/Once
+html/Callbacks/QuickReply/Helpers/TicketPreview/AfterHistory
+html/Callbacks/QuickReply/Search/Results.html/AfterResults
+html/Callbacks/QuickReply/Search/Results.html/BeforeResults
+html/Callbacks/QuickReply/Ticket/Display.html/AfterShowHistory
+html/Callbacks/QuickReply/Ticket/Display.html/BeforeShowHistory
+html/Callbacks/QuickReply/Ticket/Display.html/BeforeShowSummary
+html/Ticket/Elements/QuickReply
+html/Ticket/QuickReply.html
+inc/Module/Install.pm
+inc/Module/Install/Base.pm
+inc/Module/Install/Can.pm
+inc/Module/Install/Fetch.pm
+inc/Module/Install/Makefile.pm
+inc/Module/Install/Metadata.pm
+inc/Module/Install/ReadmeFromPod.pm
+inc/Module/Install/RTx.pm
+inc/Module/Install/Win32.pm
+inc/Module/Install/WriteAll.pm
+lib/RT/Extension/QuickReply.pm
+Makefile.PL
+MANIFEST			This list of files
+META.yml
+README
+static/css/rt-extension-quickreply.css
