@@ -4,6 +4,8 @@ package RT::Extension::QuickReply;
 
 our $VERSION = '0.01';
 
+RT->AddStyleSheets("rt-extension-quickreply.css");
+
 =head1 NAME
 
 RT-Extension-QuickReply - QuickReply on ticket display pages, etc.

@@ -102,16 +102,6 @@
     </form>
 </&>
 
-<style>
-#quick-reply {
-    display: block;
-    margin-right: 20%;
-}
-
-#quick-reply td.label {
-    width: 10%;
-}
-</style>
 <%INIT>
 my $CanRespond = 0;
 my $CanComment = 0;

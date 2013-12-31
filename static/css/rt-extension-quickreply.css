@@ -1,0 +1,8 @@
+#quick-reply {
+    display: block;
+    margin-right: 20%;
+}
+
+#quick-reply td.label {
+    width: 10%;
+}
