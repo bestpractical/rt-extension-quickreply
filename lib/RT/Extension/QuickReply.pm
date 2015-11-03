@@ -22,13 +22,17 @@ RT-Extension-QuickReply - QuickReply on ticket display pages, etc.
 
 May need root permissions
 
-=item apply etc/search_results.diff
+=item apply etc/search_results.diff only for RT older than 4.2.1
 
     patch /path/to/rt/share/html/Search/Results.html < etc/search_results.diff
 
 =item Edit your F</opt/rt4/etc/RT_SiteConfig.pm>
 
-Add this line:
+If you are using RT 4.2 or greater, add this line:
+
+    Plugin('RT::Extension::QuickReply');
+
+For RT 4.0, add this line:
 
     Set(@Plugins, qw(RT::Extension::QuickReply));
 
